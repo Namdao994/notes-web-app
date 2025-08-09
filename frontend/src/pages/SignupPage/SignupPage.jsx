@@ -1,9 +1,14 @@
 import {Flex, Form, Input, Button, Typography} from 'antd';
 import {MailOutlined, UserOutlined, KeyOutlined} from '@ant-design/icons';
 import {Link} from 'react-router';
+
 const {Title, Text} = Typography;
 
 const SignupPage = () => {
+  const handleSubmitForm = (values) => {
+    console.log(values);
+  };
+
   return (
     <Flex vertical align='center' justify='center' style={{flex: 1}}>
       <Title>Signup</Title>
@@ -13,6 +18,7 @@ const SignupPage = () => {
         autoComplete='off'
         layout='vertical'
         style={{width: '100%', maxWidth: 350, padding: '0 20px'}}
+        onFinish={handleSubmitForm}
       >
         <Form.Item label='Name' name='name' rules={[{required: true, message: 'Please input your Name!'}]}>
           <Input placeholder='Name' prefix={<UserOutlined />} />

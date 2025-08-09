@@ -3,6 +3,9 @@ import {MailOutlined, KeyOutlined} from '@ant-design/icons';
 import {Link} from 'react-router';
 const {Title, Text} = Typography;
 const LoginPage = () => {
+  const handleSubmitForm = (values) => {
+    console.log(values);
+  };
   return (
     <Flex vertical align='center' justify='center' style={{flex: 1}}>
       <Title>Login</Title>
@@ -12,6 +15,7 @@ const LoginPage = () => {
         autoComplete='off'
         layout='vertical'
         style={{width: '100%', maxWidth: 350, padding: '0 20px'}}
+        onFinish={handleSubmitForm}
       >
         <Form.Item label='Email' name='email' rules={[{required: true, message: 'Please input your email!'}]}>
           <Input placeholder='Email' prefix={<MailOutlined />} />
