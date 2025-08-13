@@ -13,7 +13,8 @@ const createNewUser = async (reqBody) => {
     email,
     name: reqBody.name.trim(),
   };
-  const createdUser = await userModel.createNewUser(user);
+  const result = await userModel.createNewUser(user);
+  const createdUser = await userModel.getUserById(result.insertedId);
   return createdUser;
 };
 
@@ -26,6 +27,7 @@ const login = async (reqBody) => {
   const userPayload = {
     userId: user._id.toString(),
     email: user.email,
+    name: user.name,
   };
   const accessToken = jwtProvider.generateToken(userPayload, env.ACCESS_TOKEN_SECRET_SIGNATURE, '1h');
   const refreshToken = jwtProvider.generateToken(userPayload, env.REFRESH_TOKEN_SECRET_SIGNATURE, '14 days');

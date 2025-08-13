@@ -1,9 +1,11 @@
 import express from 'express';
+import cors from 'cors';
 import {env} from './config/environment.js';
 import {connectDB} from './config/mongodb.js';
 import {APIs_V1} from './routes/v1/index.js';
 import cookieParser from 'cookie-parser';
 import {errorHandlingMiddleware} from './middlewares/errorHandlingMiddleware.js';
+import {corsOptions} from './config/cors.js';
 
 const startServer = () => {
   const app = express();
@@ -12,6 +14,8 @@ const startServer = () => {
   app.use(express.json());
   //Xử lí cookie
   app.use(cookieParser());
+
+  app.use(cors(corsOptions));
 
   app.use('/v1', APIs_V1);
 

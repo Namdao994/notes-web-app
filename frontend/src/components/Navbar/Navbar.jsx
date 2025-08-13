@@ -1,7 +1,9 @@
 import {Flex, Layout, Space, Typography, theme, Input, Avatar, Dropdown} from 'antd';
-import {Link} from 'react-router';
+import {Link, useNavigate} from 'react-router';
 import {BiSolidMessageEdit} from 'react-icons/bi';
 import {UserOutlined, LogoutOutlined} from '@ant-design/icons';
+import {useDispatch} from 'react-redux';
+import {logout} from '../../features/user/userSlice';
 const {Header} = Layout;
 const {Search} = Input;
 const {Title} = Typography;
@@ -12,12 +14,17 @@ const Navbar = () => {
     token: {colorBgContainer},
   } = theme.useToken();
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const onClickItemDropdownAvatar = ({key}) => {
     if (key === 'Profile') {
       //
     }
     if (key === 'Logout') {
-      //
+      dispatch(logout());
+      navigate('/login');
+      localStorage.clear();
     }
   };
 

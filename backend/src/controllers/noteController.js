@@ -12,9 +12,9 @@ const getNotesByUserId = async (req, res, next) => {
 
 const createNewNote = async (req, res, next) => {
   try {
-    const {title, content} = req.body;
+    const {title, content, tags} = req.body;
     const {userId} = req.jwtDecoded;
-    const createdNote = await noteService.createNewNote({title, content, userId});
+    const createdNote = await noteService.createNewNote({title, content, tags, userId});
     res.status(StatusCodes.OK).json({createdNote});
   } catch (error) {
     next(error);

@@ -2,7 +2,7 @@ import Joi from 'joi';
 import {getDB} from '../config/mongodb.js';
 import ApiError from '../utils/apiError.js';
 import {StatusCodes} from 'http-status-codes';
-
+import {toObjectId} from '../utils/formatters.js';
 const USER_COLLECTION_NAME = 'users';
 const USER_COllECTION_SCHEMA = Joi.object({
   name: Joi.string().required().min(3).max(50).trim().strict(),
@@ -37,7 +37,7 @@ const getUserById = async (userId) => {
     .collection(USER_COLLECTION_NAME)
     .findOne(
       {
-        _id: userId,
+        _id: toObjectId(userId),
       },
       {
         projection: {

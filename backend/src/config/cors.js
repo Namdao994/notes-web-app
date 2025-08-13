@@ -1,7 +1,7 @@
 import {StatusCodes} from 'http-status-codes';
-import ApiError from '../utils/apiError';
-import {WHITELIST_DOMAINS} from '../utils/constants';
-import {env} from './environment';
+import ApiError from '../utils/apiError.js';
+import {WHITELIST_DOMAINS} from '../utils/constants.js';
+import {env} from './environment.js';
 
 export const corsOptions = {
   origin: function (origin, callback) {
@@ -15,4 +15,6 @@ export const corsOptions = {
 
     return callback(new ApiError(StatusCodes.FORBIDDEN, `${origin} not allowed by our CORS Policy`));
   },
+  optionsSuccessStatus: 200,
+  credentials: true,
 };

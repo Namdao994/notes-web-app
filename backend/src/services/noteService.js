@@ -10,7 +10,11 @@ const createNewNote = async (data) => {
 
 const getNotesByUserId = async (userId) => {
   const notes = await noteModel.getNotesByUserId(userId);
-  return notes;
+  const modifiedNotes = notes.map(({_id, ...rest}) => ({
+    id: _id,
+    ...rest,
+  }));
+  return modifiedNotes;
 };
 
 const updateNotePartial = async (updatesField, userId, noteId) => {

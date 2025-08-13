@@ -46,14 +46,14 @@ const createNewNote = async (req, res, next) => {
 
 const updateNote = async (req, res, next) => {
   const correctNoteCondition = Joi.object({
-    title: Joi.string().required().min(3).max(50).trim().strict().message({
+    title: Joi.string().min(3).max(50).trim().strict().message({
       'any.required': 'Title is required',
       'string.empty': 'Title is not allowed to be empty',
       'string.min': 'Title length must be at least 3 characters long',
       'string.max': 'Title length must be less than or equal to 50 characters long',
       'string.trim': 'Title must not have leading or trailing whitespace',
     }),
-    content: Joi.string().required().min(3).trim().strict().message({
+    content: Joi.string().min(3).trim().strict().message({
       'any.required': 'content is required',
       'string.empty': 'content is not allowed to be empty',
       'string.min': 'content length must be at least 3 characters long',

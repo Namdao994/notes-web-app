@@ -29,7 +29,7 @@ const createNewNote = async (note) => {
       .collection(NOTE_COLLECTION_NAME)
       .insertOne({
         ...validData,
-        userId: ObjectId.createFromHexString(validData.userId),
+        userId: toObjectId(validData.userId),
       });
     return ceratedNote;
   } catch (error) {

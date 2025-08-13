@@ -42,8 +42,8 @@ const login = async (req, res, next) => {
 
 const logout = (req, res) => {
   try {
-    res.clearCookies('accessToken');
-    res.clearCookies('refreshToken');
+    res.clearCookie('accessToken');
+    res.clearCookie('refreshToken');
     res.status(StatusCodes.OK).json({message: 'Logout successfully'});
   } catch (err) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);

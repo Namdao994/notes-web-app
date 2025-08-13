@@ -10,6 +10,5 @@ export const errorHandlingMiddleware = (err, req, res, next) => {
   };
 
   if (env.BUILD_MODE !== 'dev') delete responseError.stack;
-
   res.status(responseError.statusCode).json(responseError);
 };

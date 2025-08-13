@@ -9,6 +9,8 @@ Router.post('/login', userController.login);
 
 Router.post('/signup', userValidation.createNewUser, userController.createNewUser);
 
+Router.delete('/logout', authMiddleware.isAuthorized, userController.logout);
+
 Router.route('/:id').get(authMiddleware.isAuthorized, userController.getUserById);
 
 export const userRoute = Router;

@@ -5,16 +5,21 @@ import './index.css';
 import App from './App.jsx';
 import {BrowserRouter} from 'react-router';
 import {ConfigProvider, theme} from 'antd';
+import {store, persistor} from './app/store';
+import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <ConfigProvider
-      theme={{
-        algorithm: theme.defaultAlgorithm,
-      }}
-    >
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ConfigProvider>
-  </StrictMode>
+  <ConfigProvider
+    theme={{
+      algorithm: theme.defaultAlgorithm,
+    }}
+  >
+    <Provider store={store}>
+      <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
+  </ConfigProvider>
 );
